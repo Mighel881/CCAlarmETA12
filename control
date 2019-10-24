@@ -1,7 +1,7 @@
 Package: com.level3tjg.ccalarmeta12
 Name: CCAlarmETA12
 Depends: mobilesubstrate, firmware (>=11.0)
-Version: 1.0
+Version: 1.0.1
 Architecture: iphoneos-arm
 Description: Show your next alarm's ETA in the CC module
 Maintainer: level3tjg

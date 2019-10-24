@@ -1,3 +1,5 @@
+#import <sys/utsname.h>
+
 @interface SBFApplication : NSObject
 @property (nonatomic, copy) NSString *applicationBundleIdentifier;
 @end
@@ -13,6 +15,10 @@
 @interface MTAlarm : NSObject
 -(BOOL)isActiveAndEnabledForThisDevice;
 -(NSDate *)nextFireDate;
+@end
+
+@interface UIDevice (Private)
+@property (nonatomic, copy) NSString *hwMachine;
 @end
 
 UILabel *alarmLabel;
@@ -32,6 +38,12 @@ UILabel *alarmLabel;
 			alarmLabel.textAlignment = NSTextAlignmentCenter;
 			alarmLabel.center = CGPointMake(self.view.frame.size.width/2, 12);
 			alarmLabel.frame = CGRectMake(10,52,50,10);
+			struct utsname systemInfo;
+  			uname(&systemInfo);
+  			NSString *device = @(systemInfo.machine);
+			if([device isEqualToString:@"iPhone11,8"]){
+				alarmLabel.frame = CGRectMake(10,55,58,15);
+			}
 		}
 		dispatch_async(dispatch_get_main_queue(), ^{
     		[NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer){
